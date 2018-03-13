@@ -1,0 +1,70 @@
+<div class="main-content">
+  <div class="row" *ngIf="!auth.isAuthentificated">
+    <div  class="col-4 mx-auto" align="center">
+      <p>Для продолжения пожалуйста авторизуйтесь.</p>
+    </div>
+  </div>
+
+  <div *ngIf="books" class="main-content">
+    <div class="row main-content">
+      <div class="col-xs-12 col-12" align="right">
+        <button class="btn btn-primary"
+                routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}" [routerLink]="['/books/new']">
+          Добавить книгу
+        </button>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div *ngIf="books.length == 0" class="col-4 mx-auto" align="center">
+        <p>Нет данных для отображения</p>
+      </div>
+
+      <div class="row content-menu">
+        <div class="col-6" *ngFor="let book of getBooksPage()">
+          <div class="content rounded">
+            <div class="menu-header">
+              <div>
+                <a routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}" [routerLink]="['/books/'+book.id]">
+                  {{book.name}}
+                </a>
+
+                <span class="pull-right cursor-pointer" (click)="delete(book.id)">x</span>
+              </div>
+            </div>
+
+
+            <div class="menu-body">
+              <div>
+                <span >Автор:</span>
+                <span class="pull-right">{{book.author}}</span>
+              </div>
+
+              <div>
+                <span>ISBN:</span>
+                <span class="pull-right">{{book.isbn}}</span>
+              </div>
+
+              <div>
+                <span>Цена:</span>
+                <span class="pull-right">{{book.cost}}</span>
+              </div>
+
+              <div>
+                <span>Книга:</span>
+                <a class="pull-right" target="_blank" [attr.href]="'api/attachment/'+ book.attachmentId">Скачать</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="books" class="col-xs-12 col-12" >
+        <pagination [totalItems]="books.length" [(ngModel)]="currentPage" [itemsPerPage]="pageSize"
+                    class="justify-content-center"
+                    previousText="Назад" nextText="Вперед" firstText="Первая" lastText="Последняя"></pagination>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,60 @@
+/* this file will be extracted to main dist folder and is imported in index.html */
+/* This file is for setting global styles  */
+@import 'variables';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+input {
+  margin: 5px;
+}
+
+html, body, main, .main-content, .container {
+  height: 100%;
+}
+
+input.form-control {
+  margin-left: 0px;
+}
+
+a {
+  cursor: pointer;
+  text-align: center;
+}
+
+input.ng-invalid {
+  border-color: red;
+}
+
+.navbar {
+  background-color: #f8f8f8;
+  border-color: #e7e7e7;
+}
+
+.content-menu {
+  height: 80%;
+  width: 100%;
+}
+
+.content {
+  background-color: white;
+
+}
+
+.menu-header {
+  background-color: lightgray;
+}
+
+.menu-header, .menu-body {
+  padding: 3%;
+}
+
+.menu-body span {
+  cursor: default;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.pull-right {
+  float: right;
+}

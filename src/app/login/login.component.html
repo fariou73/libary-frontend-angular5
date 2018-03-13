@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-3 mx-auto">
+    <form (ngSubmit)="submitLogin()" autocomplete="off" align="center">
+      <div class="form-group">
+        <input
+          [(ngModel)]="principal.username" class="form-control"
+          placeholder="Введите логин" name="username"
+          autofocus>
+
+        <input type="password" class="form-control"
+               [(ngModel)]="principal.password" name="password"
+               placeholder="Введите пароль">
+
+        <span *ngIf="error">{{error}}</span>
+
+        <button class="btn btn-primary">Войти</button>
+      </div>
+    </form>
+  </div>
+
+</div>

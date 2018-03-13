@@ -1,0 +1,54 @@
+<div *ngIf="book" class="row">
+  <div class="col-7 mx-auto">
+    <form name="editForm" role="form" (ngSubmit)="save()" #editForm="ngForm">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text" class="form-control" id="id" name="id"
+               [(ngModel)]="book.id" readonly />
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="field_name">Название</label>
+        <input type="text" class="form-control" name="name" id="field_name"
+               [(ngModel)]="book.name" required minlength="5" maxlength="100" />
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="field_author">Автор</label>
+        <input type="text" class="form-control" name="author" id="field_author"
+               [(ngModel)]="book.author" required minlength="5" maxlength="100" />
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="field_cost">Цена</label>
+        <input type="number" class="form-control" name="cost" id="field_cost"
+               [(ngModel)]="book.cost" required />
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="field_isbn">ISBN</label>
+        <input type="number" class="form-control" name="isbn" id="field_isbn"
+               [(ngModel)]="book.isbn" required />
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-4">
+            <a class="form-control" target="_blank" [attr.href]="book.attachmentId ? 'api/attachment/'+ book.attachmentId : null">{{book.attachmentId ? 'Скачать' : 'Загрузите книгу'}}</a>
+          </div>
+          <div class="col-8">
+            <input type="file" placeholder="Загрузить книгу" (change)="uploadFile($event)" name="file" class="file" id="field_file" />
+          </div>
+        </div>
+      </div>
+      <div class="footer row">
+        <div class="col-6" align="left">
+          <button type="button" class="btn btn-default"  routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}" [routerLink]="['/books']">
+            <span class="fa fa-ban"></span>&nbsp;<span>Отмена</span>
+          </button>
+        </div>
+        <div class="col-6" align="right">
+          <button type="submit" [disabled]="editForm.form.invalid || !book.attachmentId" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Сохранить</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
